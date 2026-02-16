@@ -48,15 +48,128 @@
         <button id="next">Next ▶</button>
       </div>
 
-      
+      <div class="footer">If Holy Friday hourly readings are shared, they can be added here too.</div>
     </div>
   </div>
 
 <script>
-const DATA = [{"theme": "ZE-WEREDE", "date": "February 15th", "readings": [{"label": "Gospel", "ref": "John 3:10–21", "tig": "https://www.bible.com/bible/2998/JHN.3.10-21", "eng": "https://www.bible.com/bible/111/JHN.3.10-21"}, {"label": "Psalm", "ref": "Psalm 2:11", "tig": "https://www.bible.com/bible/2998/PSA.2.11", "eng": "https://www.bible.com/bible/111/PSA.2.11"}]}, {"theme": "QIDIST", "date": "February 22nd", "readings": [{"label": "Gospel", "ref": "Matthew 6:16–24", "tig": "https://www.bible.com/bible/2998/MAT.6.16-24", "eng": "https://www.bible.com/bible/111/MAT.6.16-24"}, {"label": "Psalm", "ref": "Psalm 96:5–6", "tig": "https://www.bible.com/bible/2998/PSA.96.5-6", "eng": "https://www.bible.com/bible/111/PSA.96.5-6"}]}, {"theme": "MIKURAB", "date": "March 1st", "readings": [{"label": "Gospel", "ref": "John 2:12–end", "tig": "https://www.bible.com/bible/2998/JHN.2.12-25", "eng": "https://www.bible.com/bible/111/JHN.2.12-25"}, {"label": "Psalm", "ref": "Psalm 69:10–12", "tig": "https://www.bible.com/bible/2998/PSA.69.10-12", "eng": "https://www.bible.com/bible/111/PSA.69.10-12"}]}, {"theme": "METSAGU’I", "date": "March 8th", "readings": [{"label": "Gospel", "ref": "John 5:1–end", "tig": "https://www.bible.com/bible/2998/JHN.5", "eng": "https://www.bible.com/bible/111/JHN.5"}, {"label": "Psalm", "ref": "Psalm 41:4–5", "tig": "https://www.bible.com/bible/2998/PSA.41.4-5", "eng": "https://www.bible.com/bible/111/PSA.41.4-5"}]}, {"theme": "DEBRE ZEYT", "date": "March 15th", "readings": [{"label": "Gospel", "ref": "Matthew 24:1–36", "tig": "https://www.bible.com/bible/2998/MAT.24.1-36", "eng": "https://www.bible.com/bible/111/MAT.24.1-36"}, {"label": "Psalm", "ref": "Psalm 50:3", "tig": "https://www.bible.com/bible/2998/PSA.50.3", "eng": "https://www.bible.com/bible/111/PSA.50.3"}]}, {"theme": "GEBRI HEIR", "date": "March 22nd", "readings": [{"label": "Gospel", "ref": "Matthew 25:14–30", "tig": "https://www.bible.com/bible/2998/MAT.25.14-30", "eng": "https://www.bible.com/bible/111/MAT.25.14-30"}, {"label": "Psalm", "ref": "Psalm 40:9–10", "tig": "https://www.bible.com/bible/2998/PSA.40.9-10", "eng": "https://www.bible.com/bible/111/PSA.40.9-10"}]}, {"theme": "NIQODIMOS", "date": "March 29th", "readings": [{"label": "Gospel", "ref": "John 3:1–21", "tig": "https://www.bible.com/bible/2998/JHN.3.1-21", "eng": "https://www.bible.com/bible/111/JHN.3.1-21"}, {"label": "Psalm", "ref": "Psalm 17:3–4", "tig": "https://www.bible.com/bible/2998/PSA.17.3-4", "eng": "https://www.bible.com/bible/111/PSA.17.3-4"}]}, {"theme": "HOSA’INA (Palm Sunday)", "date": "April 5th", "readings": [{"label": "Gospel", "ref": "John 5:15–29", "tig": "https://www.bible.com/bible/2998/JHN.5.15-29", "eng": "https://www.bible.com/bible/111/JHN.5.15-29"}, {"label": "Psalm", "ref": "Psalm 8:2", "tig": "https://www.bible.com/bible/2998/PSA.8.2", "eng": "https://www.bible.com/bible/111/PSA.8.2"}]}, {"theme": "ARBI SIQLET (Holy Friday)", "date": "April 10th", "readings": [{"label": "Gospel", "ref": "Various readings for each hour", "tig": "", "eng": ""}]}, {"theme": "TINSA’IE (Holy Resurrection)", "date": "April 12th", "readings": [{"label": "Gospel", "ref": "John 20:1–18", "tig": "https://www.bible.com/bible/2998/JHN.20.1-18", "eng": "https://www.bible.com/bible/111/JHN.20.1-18"}, {"label": "Psalm", "ref": "Psalm 118:24–25", "tig": "https://www.bible.com/bible/2998/PSA.118.24-25", "eng": "https://www.bible.com/bible/111/PSA.118.24-25"}]}];
+const DATA = [
+  {
+    "theme": "ZE-WEREDE",
+    "date": "February 15th",
+    "iso": "2026-02-15",
+    "readings": [
+      {"label": "Gospel", "ref": "John 3:10–21", "tig": "https://www.bible.com/bible/2998/JHN.3.10-21", "eng": "https://www.bible.com/bible/111/JHN.3.10-21"},
+      {"label": "Psalm", "ref": "Psalm 2:11", "tig": "https://www.bible.com/bible/2998/PSA.2.11", "eng": "https://www.bible.com/bible/111/PSA.2.11"}
+    ]
+  },
+  {
+    "theme": "QIDIST",
+    "date": "February 22nd",
+    "iso": "2026-02-22",
+    "readings": [
+      {"label": "Gospel", "ref": "Matthew 6:16–24", "tig": "https://www.bible.com/bible/2998/MAT.6.16-24", "eng": "https://www.bible.com/bible/111/MAT.6.16-24"},
+      {"label": "Psalm", "ref": "Psalm 96:5–6", "tig": "https://www.bible.com/bible/2998/PSA.96.5-6", "eng": "https://www.bible.com/bible/111/PSA.96.5-6"}
+    ]
+  },
+  {
+    "theme": "MIKURAB",
+    "date": "March 1st",
+    "iso": "2026-03-01",
+    "readings": [
+      {"label": "Gospel", "ref": "John 2:12–end", "tig": "https://www.bible.com/bible/2998/JHN.2.12-25", "eng": "https://www.bible.com/bible/111/JHN.2.12-25"},
+      {"label": "Psalm", "ref": "Psalm 69:10–12", "tig": "https://www.bible.com/bible/2998/PSA.69.10-12", "eng": "https://www.bible.com/bible/111/PSA.69.10-12"}
+    ]
+  },
+  {
+    "theme": "METSAGU’I",
+    "date": "March 8th",
+    "iso": "2026-03-08",
+    "readings": [
+      {"label": "Gospel", "ref": "John 5:1–end", "tig": "https://www.bible.com/bible/2998/JHN.5", "eng": "https://www.bible.com/bible/111/JHN.5"},
+      {"label": "Psalm", "ref": "Psalm 41:4–5", "tig": "https://www.bible.com/bible/2998/PSA.41.4-5", "eng": "https://www.bible.com/bible/111/PSA.41.4-5"}
+    ]
+  },
+  {
+    "theme": "DEBRE ZEYT",
+    "date": "March 15th",
+    "iso": "2026-03-15",
+    "readings": [
+      {"label": "Gospel", "ref": "Matthew 24:1–36", "tig": "https://www.bible.com/bible/2998/MAT.24.1-36", "eng": "https://www.bible.com/bible/111/MAT.24.1-36"},
+      {"label": "Psalm", "ref": "Psalm 50:3", "tig": "https://www.bible.com/bible/2998/PSA.50.3", "eng": "https://www.bible.com/bible/111/PSA.50.3"}
+    ]
+  },
+  {
+    "theme": "GEBRI HEIR",
+    "date": "March 22nd",
+    "iso": "2026-03-22",
+    "readings": [
+      {"label": "Gospel", "ref": "Matthew 25:14–30", "tig": "https://www.bible.com/bible/2998/MAT.25.14-30", "eng": "https://www.bible.com/bible/111/MAT.25.14-30"},
+      {"label": "Psalm", "ref": "Psalm 40:9–10", "tig": "https://www.bible.com/bible/2998/PSA.40.9-10", "eng": "https://www.bible.com/bible/111/PSA.40.9-10"}
+    ]
+  },
+  {
+    "theme": "NIQODIMOS",
+    "date": "March 29th",
+    "iso": "2026-03-29",
+    "readings": [
+      {"label": "Gospel", "ref": "John 3:1–21", "tig": "https://www.bible.com/bible/2998/JHN.3.1-21", "eng": "https://www.bible.com/bible/111/JHN.3.1-21"},
+      {"label": "Psalm", "ref": "Psalm 17:3–4", "tig": "https://www.bible.com/bible/2998/PSA.17.3-4", "eng": "https://www.bible.com/bible/111/PSA.17.3-4"}
+    ]
+  },
+  {
+    "theme": "HOSA’INA (Palm Sunday)",
+    "date": "April 5th",
+    "iso": "2026-04-05",
+    "readings": [
+      {"label": "Gospel", "ref": "John 5:15–29", "tig": "https://www.bible.com/bible/2998/JHN.5.15-29", "eng": "https://www.bible.com/bible/111/JHN.5.15-29"},
+      {"label": "Psalm", "ref": "Psalm 8:2", "tig": "https://www.bible.com/bible/2998/PSA.8.2", "eng": "https://www.bible.com/bible/111/PSA.8.2"}
+    ]
+  },
+  {
+    "theme": "ARBI SIQLET (Holy Friday)",
+    "date": "April 10th",
+    "iso": "2026-04-10",
+    "readings": [
+      {"label": "Gospel", "ref": "Various readings for each hour", "tig": "", "eng": ""}
+    ]
+  },
+  {
+    "theme": "TINSA’IE (Holy Resurrection)",
+    "date": "April 12th",
+    "iso": "2026-04-12",
+    "readings": [
+      {"label": "Gospel", "ref": "John 20:1–18", "tig": "https://www.bible.com/bible/2998/JHN.20.1-18", "eng": "https://www.bible.com/bible/111/JHN.20.1-18"},
+      {"label": "Psalm", "ref": "Psalm 118:24–25", "tig": "https://www.bible.com/bible/2998/PSA.118.24-25", "eng": "https://www.bible.com/bible/111/PSA.118.24-25"}
+    ]
+  }
+];
+
 let idx = 0;
 
 function el(id) { return document.getElementById(id); }
+
+function getTodayISOInLA() {
+  // returns YYYY-MM-DD in America/Los_Angeles
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+function autoSetIndexToCurrentReading() {
+  const today = getTodayISOInLA();
+
+  // Find the latest reading whose date is <= today
+  let best = 0;
+  for (let i = 0; i < DATA.length; i++) {
+    if (!DATA[i].iso) continue;
+    if (DATA[i].iso <= today) best = i;
+  }
+  idx = best;
+}
 
 function render() {
   const item = DATA[idx];
@@ -120,6 +233,7 @@ el('next').addEventListener('click', () => {
   }
 });
 
+autoSetIndexToCurrentReading();
 render();
 </script>
 </body>
