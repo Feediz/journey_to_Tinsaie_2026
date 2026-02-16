@@ -220,7 +220,7 @@ function render() {
   });
 
   el('prev').disabled = idx === 0;
-  el('next').textContent = (idx === DATA.length-1) ? 'Finish ✅' : 'Next ▶';
+  el('next').textContent = (idx === DATA.length-1) ? 'Finish ✅' : 'Next (ቀጻሊ) ▶';
 }
 
 el('prev').addEventListener('click', () => {
