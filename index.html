@@ -44,8 +44,8 @@
       <div id="readings"></div>
 
       <div class="controls">
-        <button id="prev">◀ Prev</button>
-        <button id="next">Next ▶</button>
+        <button id="prev">◀ Prev (ድሕሪት)</button>
+        <button id="next">Next (ቀጻሊ) ▶</button>
       </div>
 
       
@@ -196,7 +196,7 @@ function render() {
       a1.target = '_blank';
       a1.rel = 'noopener';
       a1.className = 'btn';
-      a1.textContent = 'Tigrinya';
+      a1.textContent = 'Tigrinya (ትግርኛ)';
       links.appendChild(a1);
     }
     if (r.eng) {
@@ -205,7 +205,7 @@ function render() {
       a2.target = '_blank';
       a2.rel = 'noopener';
       a2.className = 'btn';
-      a2.textContent = 'English NIV';
+      a2.textContent = 'English (እንግሊዝ) NIV';
       links.appendChild(a2);
     }
     if (!r.tig && !r.eng) {
