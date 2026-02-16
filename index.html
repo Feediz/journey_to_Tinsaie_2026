@@ -24,6 +24,46 @@
   button:disabled{opacity:.4; cursor:not-allowed;}
   .progress{color:#444; font-size:13px;}
   .footer{text-align:center; color:#666; font-size:12px; margin-top:12px;}
+
+  /* Modal styles */
+  .footer img{cursor:pointer; border-radius:12px;}
+  .img-modal-backdrop{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    z-index:9999;
+  }
+  .img-modal{
+    position:relative;
+    width:min(900px, 100%);
+    max-height:90vh;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    overflow:hidden;
+  }
+  .img-modal img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:90vh;
+    object-fit:contain;
+    background:#fff;
+  }
+  .img-close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:999px;
+    padding:8px 10px;
+    font-weight:800;
+    cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -48,7 +88,16 @@
         <button id="next">Next (ቀጻሊ) ▶</button>
       </div>
 
-      <div class="footer"><img src="index.jpeg" width="150px;" height="150px;" /></div>
+      <div class="footer">
+        <img id="footerImg" src="index.jpeg" width="150" height="150" alt="Reading schedule image" />
+      </div>
+    </div>
+  </div>
+
+  <div class="img-modal-backdrop" id="imgBackdrop" aria-hidden="true">
+    <div class="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button class="img-close" id="imgClose" type="button">Close ✕</button>
+      <img id="imgPreview" src="" alt="Preview" />
     </div>
   </div>
 
@@ -144,6 +193,39 @@ const DATA = [
     ]
   }
 ];
+
+
+// Footer image lightbox
+(function initFooterImageModal(){
+  const footerImg = document.getElementById('footerImg');
+  const backdrop = document.getElementById('imgBackdrop');
+  const preview = document.getElementById('imgPreview');
+  const closeBtn = document.getElementById('imgClose');
+
+  function open() {
+    preview.src = footerImg.src;
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+  }
+  function close() {
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+    preview.src = '';
+  }
+
+  footerImg.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+
+  // Click outside the image closes
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) close();
+  });
+
+  // Escape closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.style.display === 'flex') close();
+  });
+})();
 
 let idx = 0;
 
