@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Journey to Tinsa’ie 2026 — Readings</title>
+<style>
+  body{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin:0; background:#f6f7f8; color:#111;}
+  .wrap{max-width:860px; margin:0 auto; padding:18px;}
+  .card{background:#fff; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,.08); padding:18px;}
+  h1{font-size:20px; margin:0 0 6px; text-align:center;}
+  .sub{text-align:center; color:#555; margin:0 0 14px; font-size:13px;}
+  .badge{display:inline-block; padding:4px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; font-size:12px;}
+  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin:12px 0 10px;}
+  .theme{font-size:18px; font-weight:800; margin:6px 0 0;}
+  .date{color:#666; font-size:13px; margin-top:2px;}
+  .reading{border-top:1px solid #eee; padding-top:12px; margin-top:12px;}
+  .reading h3{margin:0 0 8px; font-size:14px;}
+  .links{display:flex; gap:10px; flex-wrap:wrap;}
+  a.btn{display:inline-block; padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; font-size:13px; border:1px solid #ddd;}
+  a.btn:hover{border-color:#bbb;}
+  .controls{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; justify-content:space-between;}
+  button{padding:10px 14px; border-radius:10px; border:1px solid #ddd; background:#fff; font-weight:800; cursor:pointer;}
+  button:disabled{opacity:.4; cursor:not-allowed;}
+  .progress{color:#444; font-size:13px;}
+  .footer{text-align:center; color:#666; font-size:12px; margin-top:12px;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Journey to Tinsa’ie 2026 — Readings</h1>
+      <p class="sub">Tap a link to read. Use <b>Next</b> to move through the assigned readings.</p>
+
+      <div class="row">
+        <div>
+          <div class="badge" id="badge"></div>
+          <div class="theme" id="theme"></div>
+          <div class="date" id="date"></div>
+        </div>
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div id="readings"></div>
+
+      <div class="controls">
+        <button id="prev">◀ Prev</button>
+        <button id="next">Next ▶</button>
+      </div>
+
+      <div class="footer">If Holy Friday hourly readings are shared, they can be added here too.</div>
+    </div>
+  </div>
+
+<script>
+const DATA = [{"theme": "ZE-WEREDE", "date": "February 15th", "readings": [{"label": "Gospel", "ref": "John 3:10–21", "tig": "https://www.bible.com/bible/2998/JHN.3.10-21", "eng": "https://www.bible.com/bible/111/JHN.3.10-21"}, {"label": "Psalm", "ref": "Psalm 2:11", "tig": "https://www.bible.com/bible/2998/PSA.2.11", "eng": "https://www.bible.com/bible/111/PSA.2.11"}]}, {"theme": "QIDIST", "date": "February 22nd", "readings": [{"label": "Gospel", "ref": "Matthew 6:16–24", "tig": "https://www.bible.com/bible/2998/MAT.6.16-24", "eng": "https://www.bible.com/bible/111/MAT.6.16-24"}, {"label": "Psalm", "ref": "Psalm 96:5–6", "tig": "https://www.bible.com/bible/2998/PSA.96.5-6", "eng": "https://www.bible.com/bible/111/PSA.96.5-6"}]}, {"theme": "MIKURAB", "date": "March 1st", "readings": [{"label": "Gospel", "ref": "John 2:12–end", "tig": "https://www.bible.com/bible/2998/JHN.2.12-25", "eng": "https://www.bible.com/bible/111/JHN.2.12-25"}, {"label": "Psalm", "ref": "Psalm 69:10–12", "tig": "https://www.bible.com/bible/2998/PSA.69.10-12", "eng": "https://www.bible.com/bible/111/PSA.69.10-12"}]}, {"theme": "METSAGU’I", "date": "March 8th", "readings": [{"label": "Gospel", "ref": "John 5:1–end", "tig": "https://www.bible.com/bible/2998/JHN.5", "eng": "https://www.bible.com/bible/111/JHN.5"}, {"label": "Psalm", "ref": "Psalm 41:4–5", "tig": "https://www.bible.com/bible/2998/PSA.41.4-5", "eng": "https://www.bible.com/bible/111/PSA.41.4-5"}]}, {"theme": "DEBRE ZEYT", "date": "March 15th", "readings": [{"label": "Gospel", "ref": "Matthew 24:1–36", "tig": "https://www.bible.com/bible/2998/MAT.24.1-36", "eng": "https://www.bible.com/bible/111/MAT.24.1-36"}, {"label": "Psalm", "ref": "Psalm 50:3", "tig": "https://www.bible.com/bible/2998/PSA.50.3", "eng": "https://www.bible.com/bible/111/PSA.50.3"}]}, {"theme": "GEBRI HEIR", "date": "March 22nd", "readings": [{"label": "Gospel", "ref": "Matthew 25:14–30", "tig": "https://www.bible.com/bible/2998/MAT.25.14-30", "eng": "https://www.bible.com/bible/111/MAT.25.14-30"}, {"label": "Psalm", "ref": "Psalm 40:9–10", "tig": "https://www.bible.com/bible/2998/PSA.40.9-10", "eng": "https://www.bible.com/bible/111/PSA.40.9-10"}]}, {"theme": "NIQODIMOS", "date": "March 29th", "readings": [{"label": "Gospel", "ref": "John 3:1–21", "tig": "https://www.bible.com/bible/2998/JHN.3.1-21", "eng": "https://www.bible.com/bible/111/JHN.3.1-21"}, {"label": "Psalm", "ref": "Psalm 17:3–4", "tig": "https://www.bible.com/bible/2998/PSA.17.3-4", "eng": "https://www.bible.com/bible/111/PSA.17.3-4"}]}, {"theme": "HOSA’INA (Palm Sunday)", "date": "April 5th", "readings": [{"label": "Gospel", "ref": "John 5:15–29", "tig": "https://www.bible.com/bible/2998/JHN.5.15-29", "eng": "https://www.bible.com/bible/111/JHN.5.15-29"}, {"label": "Psalm", "ref": "Psalm 8:2", "tig": "https://www.bible.com/bible/2998/PSA.8.2", "eng": "https://www.bible.com/bible/111/PSA.8.2"}]}, {"theme": "ARBI SIQLET (Holy Friday)", "date": "April 10th", "readings": [{"label": "Gospel", "ref": "Various readings for each hour", "tig": "", "eng": ""}]}, {"theme": "TINSA’IE (Holy Resurrection)", "date": "April 12th", "readings": [{"label": "Gospel", "ref": "John 20:1–18", "tig": "https://www.bible.com/bible/2998/JHN.20.1-18", "eng": "https://www.bible.com/bible/111/JHN.20.1-18"}, {"label": "Psalm", "ref": "Psalm 118:24–25", "tig": "https://www.bible.com/bible/2998/PSA.118.24-25", "eng": "https://www.bible.com/bible/111/PSA.118.24-25"}]}];
+let idx = 0;
+
+function el(id) { return document.getElementById(id); }
+
+function render() {
+  const item = DATA[idx];
+  el('badge').textContent = 'Week ' + (idx+1);
+  el('theme').textContent = item.theme;
+  el('date').textContent = item.date;
+  el('progress').textContent = (idx+1) + ' / ' + DATA.length;
+
+  const container = el('readings');
+  container.innerHTML = '';
+  item.readings.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'reading';
+    const h = document.createElement('h3');
+    h.textContent = r.label + ' — ' + r.ref;
+    div.appendChild(h);
+
+    const links = document.createElement('div');
+    links.className = 'links';
+
+    if (r.tig) {
+      const a1 = document.createElement('a');
+      a1.href = r.tig;
+      a1.target = '_blank';
+      a1.rel = 'noopener';
+      a1.className = 'btn';
+      a1.textContent = 'Tigrinya (2998)';
+      links.appendChild(a1);
+    }
+    if (r.eng) {
+      const a2 = document.createElement('a');
+      a2.href = r.eng;
+      a2.target = '_blank';
+      a2.rel = 'noopener';
+      a2.className = 'btn';
+      a2.textContent = 'English NIV (111)';
+      links.appendChild(a2);
+    }
+    if (!r.tig && !r.eng) {
+      const p = document.createElement('div');
+      p.style.color = '#666';
+      p.style.fontSize = '13px';
+      p.textContent = 'No links provided for this item.';
+      links.appendChild(p);
+    }
+    div.appendChild(links);
+    container.appendChild(div);
+  });
+
+  el('prev').disabled = idx === 0;
+  el('next').textContent = (idx === DATA.length-1) ? 'Finish ✅' : 'Next ▶';
+}
+
+el('prev').addEventListener('click', () => {
+  if (idx > 0) { idx--; render(); window.scrollTo(0,0); }
+});
+el('next').addEventListener('click', () => {
+  if (idx < DATA.length-1) { idx++; render(); window.scrollTo(0,0); }
+  else {
+    alert('Finished! God bless your reading.');
+  }
+});
+
+render();
+</script>
+</body>
+</html>
